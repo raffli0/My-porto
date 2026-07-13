@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowUpRight, Circle, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight, Circle, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { useState, useEffect } from "react";
 
 import Container from "../ui/container";
@@ -215,31 +215,33 @@ export default function ProjectsHighlight() {
                                         whileHover={{ y: -4 }}
                                     >
                                         {/* ── Image / Placeholder ── */}
-                                        <div className="relative h-44 w-full overflow-hidden border-b">
-                                            {/* Placeholder gradient */}
-                                            <div className={`absolute inset-0 bg-gradient-to-br ${gradient} flex items-center justify-center`}>
-                                                <span className="font-mono text-4xl font-bold tracking-tighter opacity-20 select-none">
-                                                    {project.title.slice(0, 2).toUpperCase()}
+                                        <Link href={`/projects/${project.slug}`}>
+                                            <div className="relative h-44 w-full overflow-hidden border-b cursor-pointer">
+                                                {/* Placeholder gradient */}
+                                                <div className={`absolute inset-0 bg-gradient-to-br ${gradient} flex items-center justify-center`}>
+                                                    <span className="font-mono text-4xl font-bold tracking-tighter opacity-20 select-none">
+                                                        {project.title.slice(0, 2).toUpperCase()}
+                                                    </span>
+                                                </div>
+
+                                                {project.image ? (
+                                                    <img
+                                                        src={project.image}
+                                                        alt={project.title}
+                                                        className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                                        onError={(e) => {
+                                                            (e.currentTarget as HTMLImageElement).style.display = "none";
+                                                        }}
+                                                    />
+                                                ) : null}
+
+                                                {/* Status badge — Top Right */}
+                                                <span className={`absolute top-3 right-3 flex items-center gap-1.5 rounded-full border border-current/20 bg-background/80 px-2.5 py-1 font-mono text-[11px] backdrop-blur-sm ${status.text}`}>
+                                                    <Circle className="h-1.5 w-1.5 fill-current" />
+                                                    {status.label}
                                                 </span>
                                             </div>
-
-                                            {project.image ? (
-                                                <img
-                                                    src={project.image}
-                                                    alt={project.title}
-                                                    className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                                                    onError={(e) => {
-                                                        (e.currentTarget as HTMLImageElement).style.display = "none";
-                                                    }}
-                                                />
-                                            ) : null}
-
-                                            {/* Status badge — Top Right */}
-                                            <span className={`absolute top-3 right-3 flex items-center gap-1.5 rounded-full border border-current/20 bg-background/80 px-2.5 py-1 font-mono text-[11px] backdrop-blur-sm ${status.text}`}>
-                                                <Circle className="h-1.5 w-1.5 fill-current" />
-                                                {status.label}
-                                            </span>
-                                        </div>
+                                        </Link>
 
                                         {/* ── Body ── */}
                                         <div className="flex flex-1 flex-col p-5">
@@ -262,11 +264,20 @@ export default function ProjectsHighlight() {
 
                                             {/* Title + actions */}
                                             <div className="mb-2 flex items-start justify-between gap-2">
-                                                <h3 className="font-semibold leading-snug tracking-tight line-clamp-1">
-                                                    {project.title}
-                                                </h3>
+                                                <Link href={`/projects/${project.slug}`}>
+                                                    <h3 className="font-semibold leading-snug tracking-tight line-clamp-1 group-hover:text-primary transition-colors cursor-pointer">
+                                                        {project.title}
+                                                    </h3>
+                                                </Link>
 
                                                 <div className="flex shrink-0 items-center gap-1 opacity-0 transition-opacity duration-150 group-hover:opacity-100">
+                                                    <Link
+                                                        href={`/projects/${project.slug}`}
+                                                        className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                                                        aria-label="View Details"
+                                                    >
+                                                        <Eye className="h-4 w-4" />
+                                                    </Link>
                                                     {project.repo && (
                                                         <Link
                                                             href={project.repo}
