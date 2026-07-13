@@ -9,8 +9,8 @@ import Container from "../ui/container";
 import { projects } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
-import TerminalLine from "../home/terminal-line";
-import BlinkingCursor from "../home/blinking-cursor";
+import TerminalLine from "../terminal/terminal-line";
+import BlinkingCursor from "../terminal/blinking-cursor";
 
 /* GitHub SVG */
 const GithubIcon = () => (
@@ -81,7 +81,7 @@ export default function ProjectsClient() {
             <Container>
                 {/* Header Section */}
                 <div className="pt-8 gap-20">
-                    <p className="font-mono text-sm text-primary tracking-widest">
+                    <p className="font-mono text-sm text-primary tracking-widest mb-6">
                         <span className="text-primary">$</span>
                         <TerminalLine
                             text="find ./projects -type f -featured"
@@ -94,7 +94,10 @@ export default function ProjectsClient() {
                         My Projects
                     </h1>
                     <p className="text-muted-foreground max-w-xl text-base leading-7">
-                        Explore all the applications, IoT products, security projects, and tools that I have built. Use search or categories to filter.
+                        Explore all the applications, IoT products, security projects, and tools that I have built.
+                    </p>
+                    <p className="text-muted-foreground text-sm mt-2">
+                        Use search or categories to filter.
                     </p>
                 </div>
 

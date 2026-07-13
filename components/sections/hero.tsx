@@ -2,9 +2,9 @@ import { profile } from "@/data/profile";
 import Container from "../ui/container";
 import { Button } from "../ui/button";
 
-import TerminalCard from "./terminal-card";
-import TerminalLine from "./terminal-line";
-import BlinkingCursor from "./blinking-cursor";
+import TerminalCard from "../terminal/terminal-card";
+import TerminalLine from "../terminal/terminal-line";
+import BlinkingCursor from "../terminal/blinking-cursor";
 import StackPills from "./stack-pills";
 import Link from "next/link";
 

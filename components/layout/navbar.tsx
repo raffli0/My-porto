@@ -12,24 +12,16 @@ import { profile } from "@/data/profile";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-    { name: "Home",         href: "/" },
-    { name: "About",        href: "#about" },
-    { name: "Projects",     href: "/projects" },
-    { name: "Case Studies", href: "/casestudies" },
-    { name: "Blog",         href: "/blog" },
-    { name: "Contact",      href: "#contact" },
-];
+import { navItems } from "@/data/navigation";
 
 export default function Navbar() {
     const { resolvedTheme, setTheme } = useTheme();
     const pathName = usePathname();
 
-    const [mounted,    setMounted]    = useState(false);
-    const [scrolled,   setScrolled]   = useState(false);
+    const [mounted, setMounted] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const [activeHash, setActiveHash] = useState("");
-    const [menuOpen,   setMenuOpen]   = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => { setMounted(true); }, []);
 
@@ -133,7 +125,7 @@ export default function Navbar() {
                         >
                             {mounted && (
                                 <span className="relative flex h-4 w-4 items-center justify-center">
-                                    <Sun  className="absolute h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                                    <Sun className="absolute h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                                     <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                                 </span>
                             )}
@@ -166,8 +158,8 @@ export default function Navbar() {
                                         key="close"
                                         className="absolute"
                                         initial={{ rotate: -90, opacity: 0 }}
-                                        animate={{ rotate: 0,   opacity: 1 }}
-                                        exit={{   rotate:  90, opacity: 0 }}
+                                        animate={{ rotate: 0, opacity: 1 }}
+                                        exit={{ rotate: 90, opacity: 0 }}
                                         transition={{ duration: 0.15 }}
                                     >
                                         <X className="h-4 w-4" />
@@ -176,9 +168,9 @@ export default function Navbar() {
                                     <motion.span
                                         key="open"
                                         className="absolute"
-                                        initial={{ rotate:  90, opacity: 0 }}
-                                        animate={{ rotate: 0,   opacity: 1 }}
-                                        exit={{   rotate: -90, opacity: 0 }}
+                                        initial={{ rotate: 90, opacity: 0 }}
+                                        animate={{ rotate: 0, opacity: 1 }}
+                                        exit={{ rotate: -90, opacity: 0 }}
                                         transition={{ duration: 0.15 }}
                                     >
                                         <Menu className="h-4 w-4" />
@@ -210,7 +202,7 @@ export default function Navbar() {
                                             <motion.li
                                                 key={item.href}
                                                 initial={{ x: -8, opacity: 0 }}
-                                                animate={{ x: 0,  opacity: 1 }}
+                                                animate={{ x: 0, opacity: 1 }}
                                                 transition={{ delay: i * 0.035 }}
                                             >
                                                 <Link
