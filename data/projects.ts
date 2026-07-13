@@ -21,7 +21,7 @@ export const projects: Project[] = [
         image: "/images/projects/humana.webp",
         featured: true,
         status: "wip",
-        categories: ["Website", "Cross Platform"],
+        categories: ["Website", "Mobile App"],
     },
     {
         slug: "humana-app",
@@ -34,26 +34,26 @@ export const projects: Project[] = [
         image: "/images/projects/humana.webp",
         featured: true,
         status: "wip",
-        categories: ["Mobile", "Cross Platform"],
+        categories: ["Mobile App", "Website"],
     },
     {   
         slug: "cnc-mini",
         title: "Mikrokontroler Arduino CNC Mini GRBL-28byj-48",
         description:
             "Mini CNC Menggunakan Arduino dan 3 Stepper Motor 28BYJ-48",
-        tags: ["Arduino", "CNC", "GRBL", "28byj-48"],
+        tags: ["Arduino", "GRBL", "28byj-48"],
         repo: "https://github.com/raffli0/GRBL-28byj-48",
         image: "/images/projects/cnc.webp",
         featured: true,
         status: "wip",
-        categories: ["Mikrokontroler", "Arduino"],
+        categories: ["Mikrokontroler"],
     },
     {
         slug: "iot-heartbeat",
         title: "Deteksi detak jantung & saturasi oksigen",
         description:
             "IoT berbasis sensor heartbeat",
-        tags: ["HTML", "CSS", "JavaScript", "Python", "MQTT", "ESP32"],
+        tags: ["HTML", "Bootstrap", "JavaScript", "Python", "MQTT", "ESP32"],
         href: "/",
         repo: "https://github.com/Salsabillasyazwani/Deteksi-detak-jantung_Kelompok10_SistemMikrokontroler",
         image: "/images/projects/iot.webp",
@@ -78,7 +78,7 @@ export const projects: Project[] = [
         title: "Perpus Digital",
         description:
             "Website untuk mengelola perpustakaan",
-        tags: ["Laravel", "MySQL", "Tailwind Css"],
+        tags: ["Laravel", "MySQL", "Tailwind CSS"],
         repo: "https://github.com/raffli0",
         image: "/images/projects/pakar.webp",
         featured: false,
@@ -90,7 +90,7 @@ export const projects: Project[] = [
         title: "Fakie Web",
         description:
             "Website e-commerce untuk menjual produk-produk gear skate",
-        tags: ["Vite", "Tailwind Css", "Typescript"],
+        tags: ["Vite", "Tailwind CSS", "TypeScript"],
         repo: "https://github.com/raffli0",
         image: "/images/projects/pakar.webp",
         featured: false,
