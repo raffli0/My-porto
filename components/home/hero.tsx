@@ -6,6 +6,7 @@ import TerminalCard from "./terminal-card";
 import TerminalLine from "./terminal-line";
 import BlinkingCursor from "./blinking-cursor";
 import StackPills from "./stack-pills";
+import Link from "next/link";
 
 export default function Hero() {
     return (
@@ -36,13 +37,17 @@ export default function Hero() {
 
                         {/* button */}
                         <div className="flex gap-4">
-                            <Button variant="glow" size="lg">
-                                View Projects
-                            </Button>
+                            <Link href="/projects">
+                                <Button variant="glow" size="lg">
+                                    View Projects
+                                </Button>
+                            </Link>
 
-                            <Button variant="terminal" size="lg">
-                                Contact Me
-                            </Button>
+                            <Link href="#contact">
+                                <Button variant="terminal" size="lg">
+                                    Contact Me
+                                </Button>
+                            </Link>
                         </div>
                     </div>
 

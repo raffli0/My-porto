@@ -9,6 +9,9 @@ import Container from "../ui/container";
 import { projects } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
+import TerminalLine from "../home/terminal-line";
+import BlinkingCursor from "../home/blinking-cursor";
+
 /* GitHub SVG */
 const GithubIcon = () => (
     <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
@@ -74,12 +77,18 @@ export default function ProjectsClient() {
     });
 
     return (
-        <section className="py-20 min-h-[80vh]">
+        <section className="min-h-[80vh]">
             <Container>
                 {/* Header Section */}
-                <div className="mb-12 space-y-4">
+                <div className="pt-8 gap-20">
                     <p className="font-mono text-sm text-primary tracking-widest">
-                        $ find ./projects -type f -featured
+                        <span className="text-primary">$</span>
+                        <TerminalLine
+                            text="find ./projects -type f -featured"
+                            speed={30}
+                        />
+                        <BlinkingCursor
+                        />
                     </p>
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
                         My Projects

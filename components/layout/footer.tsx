@@ -3,10 +3,10 @@ import Link from "next/link";
 import Container from "../ui/container";
 
 const navLinks = [
-    { label: "About",      href: "#about"      },
-    { label: "Stack",      href: "#stack"       },
-    { label: "Projects",   href: "#projects"    },
-    { label: "Contact",    href: "#contact"     },
+    { label: "About", href: "#about" },
+    { label: "Stack", href: "#stack" },
+    { label: "Projects", href: "/projects" },
+    { label: "Contact", href: "#contact" },
 ];
 
 const socialLinks = [

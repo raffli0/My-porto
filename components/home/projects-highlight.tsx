@@ -18,43 +18,43 @@ const GithubIcon = () => (
 );
 
 const statusConfig = {
-    live:     { label: "Live",     text: "text-green-500"  },
-    wip:      { label: "WIP",      text: "text-yellow-500" },
-    archived: { label: "Archived", text: "text-zinc-400"   },
+    live: { label: "Live", text: "text-green-500" },
+    wip: { label: "WIP", text: "text-yellow-500" },
+    archived: { label: "Archived", text: "text-zinc-400" },
 };
 
 const tagColors: Record<string, string> = {
-    "Next.js":       "border-white/15 text-white/70",
-    "Laravel":       "border-red-500/30 text-red-400",
-    "Flutter":       "border-sky-500/30 text-sky-400",
-    "TypeScript":    "border-blue-500/30 text-blue-400",
-    "Python":        "border-yellow-500/30 text-yellow-400",
-    "MySQL":         "border-orange-500/30 text-orange-400",
-    "Alpine.js":     "border-teal-500/30 text-teal-400",
+    "Next.js": "border-white/15 text-white/70",
+    "Laravel": "border-red-500/30 text-red-400",
+    "Flutter": "border-sky-500/30 text-sky-400",
+    "TypeScript": "border-blue-500/30 text-blue-400",
+    "Python": "border-yellow-500/30 text-yellow-400",
+    "MySQL": "border-orange-500/30 text-orange-400",
+    "Alpine.js": "border-teal-500/30 text-teal-400",
     "Framer Motion": "border-purple-500/30 text-purple-400",
-    "Bash":          "border-zinc-400/30 text-zinc-400",
-    "OWASP":         "border-red-400/30 text-red-400",
-    "HTML":          "border-orange-400/30 text-orange-400",
-    "CSS":           "border-blue-400/30 text-blue-400",
-    "JavaScript":    "border-yellow-400/30 text-yellow-400",
-    "MQTT":          "border-purple-400/30 text-purple-400",
-    "ESP32":         "border-red-400/30 text-red-400",
-    "Tailwind Css":  "border-sky-400/30 text-sky-400",
+    "Bash": "border-zinc-400/30 text-zinc-400",
+    "OWASP": "border-red-400/30 text-red-400",
+    "HTML": "border-orange-400/30 text-orange-400",
+    "CSS": "border-blue-400/30 text-blue-400",
+    "JavaScript": "border-yellow-400/30 text-yellow-400",
+    "MQTT": "border-purple-400/30 text-purple-400",
+    "ESP32": "border-red-400/30 text-red-400",
+    "Tailwind Css": "border-sky-400/30 text-sky-400",
 };
 
 const categoryConfig: Record<string, { bg: string, text: string, border: string }> = {
-    "Website":             { bg: "bg-blue-500/10 hover:bg-blue-500/15",        text: "text-blue-400",        border: "border-blue-500/20" },
-    "Internet of Things":   { bg: "bg-emerald-500/10 hover:bg-emerald-500/15",  text: "text-emerald-400",     border: "border-emerald-500/20" },
-    "Mobile App":          { bg: "bg-rose-500/10 hover:bg-rose-500/15",        text: "text-rose-400",        border: "border-rose-500/20" },
-    "Security Tools":      { bg: "bg-yellow-500/10 hover:bg-yellow-500/15",    text: "text-yellow-400",      border: "border-yellow-500/20" },
+    "Website": { bg: "bg-blue-500/10 hover:bg-blue-500/15", text: "text-blue-400", border: "border-blue-500/20" },
+    "Internet of Things": { bg: "bg-emerald-500/10 hover:bg-emerald-500/15", text: "text-emerald-400", border: "border-emerald-500/20" },
+    "Mobile App": { bg: "bg-rose-500/10 hover:bg-rose-500/15", text: "text-rose-400", border: "border-rose-500/20" },
+    "Security Tools": { bg: "bg-yellow-500/10 hover:bg-yellow-500/15", text: "text-yellow-400", border: "border-yellow-500/20" },
 };
 
 /* gradient placeholders per project slug */
 const placeholderGradients: Record<string, string> = {
-    "perpus-digital":  "from-red-950/60 via-zinc-900 to-zinc-900",
-    "porto":           "from-emerald-950/60 via-zinc-900 to-zinc-900",
-    "sistem-pakar":    "from-blue-950/60 via-zinc-900 to-zinc-900",
-    "IoT":             "from-orange-950/60 via-zinc-900 to-zinc-900",
+    "perpus-digital": "from-red-950/60 via-zinc-900 to-zinc-900",
+    "porto": "from-emerald-950/60 via-zinc-900 to-zinc-900",
+    "sistem-pakar": "from-blue-950/60 via-zinc-900 to-zinc-900",
+    "IoT": "from-orange-950/60 via-zinc-900 to-zinc-900",
 };
 
 const featured = projects.filter(p => p.featured);
@@ -68,8 +68,8 @@ export default function ProjectsHighlight() {
     const categories = ["All", ...Array.from(new Set(featured.flatMap(p => p.categories)))];
 
     // Filter projects based on selected category
-    const filteredProjects = selectedCategory === "All" 
-        ? featured 
+    const filteredProjects = selectedCategory === "All"
+        ? featured
         : featured.filter(p => p.categories.includes(selectedCategory));
 
     useEffect(() => {
@@ -153,7 +153,7 @@ export default function ProjectsHighlight() {
                 </motion.div>
 
                 {/* Dynamic Category Filter Pills */}
-                <motion.div 
+                <motion.div
                     className="mb-8 flex flex-wrap gap-2 border-b pb-4"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}

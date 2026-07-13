@@ -1,10 +1,8 @@
-"use client";
-
 import Container from "../ui/container";
 import TerminalLine from "../home/terminal-line";
 import BlinkingCursor from "../home/blinking-cursor";
 
-export default function BlogClient() {
+export default function CaseStudiesClient() {
     return (
         <section className="min-h-[80vh]">
             <Container>
@@ -13,16 +11,16 @@ export default function BlogClient() {
                     <p className="font-mono text-sm text-primary tracking-widest">
                         <span className="text-primary">$</span>
                         <TerminalLine
-                            text="find ./blog -type f -featured"
+                            text="find ./casestudies -type f -featured"
                             speed={30}
                         />
                         <BlinkingCursor />
                     </p>
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-                        Blog
+                        Case Studies
                     </h1>
                     <p className="text-muted-foreground max-w-xl text-base leading-7">
-                        Explore all the articles I've written about technology, programming, and my personal projects.
+                        Explore all the case studies I've done about technology, programming, and my personal projects.
                     </p>
                 </div>
 
