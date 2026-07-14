@@ -48,10 +48,10 @@ export default function Contact() {
                         {/* Header */}
                         <div className="flex items-center justify-between border-b bg-muted/50 px-5 py-3 relative">
                             {/* Windows control */}
-                            <div className="flex items-center gap-1.5 absolute left-5">
-                                <span className="h-3 w-3 rounded-full bg-[#ff5f56] border border-[#e0443e]"></span>
-                                <span className="h-3 w-3 rounded-full bg-[#ffbd2e] border border-[#dea123]"></span>
-                                <span className="h-3 w-3 rounded-full bg-[#27c93f] border border-[#1aab29]"></span>
+                            <div className="flex items-center gap-1.5 absolute left-5" aria-hidden="true">
+                                <span className="h-3.5 w-3.5 rounded-full bg-[#ff5f56] border border-[#e0443e]"></span>
+                                <span className="h-3.5 w-3.5 rounded-full bg-[#ffbd2e] border border-[#dea123]"></span>
+                                <span className="h-3.5 w-3.5 rounded-full bg-[#27c93f] border border-[#1aab29]"></span>
                             </div>
                             <div className="w-full text-center">
                                 <p className="font-mono text-xs sm:text-sm text-muted-foreground">$ ssh contact@raffly.dev</p>
@@ -94,7 +94,7 @@ export default function Contact() {
                             </div>
 
                             {/* Form fields */}
-                            <div className="space-y-4 pt-2">
+                            <form className="space-y-4 pt-2" onSubmit={(e) => e.preventDefault()} role="form" aria-label="Contact form">
                                 {/* Name */}
                                 <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
                                     <label htmlFor="name" className="text-emerald-600 dark:text-emerald-400 font-bold w-20 shrink-0">
@@ -133,7 +133,7 @@ export default function Contact() {
                                         className="w-full bg-transparent border-none outline-none focus:outline-none p-0 text-foreground placeholder:text-muted-foreground/50 resize-none"
                                     />
                                 </div>
-                            </div>
+                            </form>
 
                             {/* Bottom Divider & Controls */}
                             <div className="border-t border-border/50 pt-5 flex items-center justify-between">
@@ -149,9 +149,9 @@ export default function Contact() {
                                 </div>
 
                                 {/* Execute Button */}
-                                <button className="bg-[#18181b] dark:bg-[#fafafa] text-white dark:text-black hover:opacity-90 active:scale-95 transition-all rounded px-4 py-2 font-mono text-xs font-bold tracking-wider flex items-center gap-2 uppercase">
+                                <button type="submit" className="bg-[#18181b] dark:bg-[#fafafa] text-white dark:text-black hover:opacity-90 active:scale-95 transition-all rounded px-4 py-2 font-mono text-xs font-bold tracking-wider flex items-center gap-2 uppercase min-h-[44px] min-w-[44px]">
                                     EXECUTE_SEND
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5" aria-hidden="true">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
                                     </svg>
                                 </button>
@@ -159,7 +159,7 @@ export default function Contact() {
                         </div>
 
                         {/* Status bar */}
-                        <div className="border-t bg-muted/20 px-5 py-2.5 flex items-center justify-between font-mono text-[10px] tracking-wider text-muted-foreground/80 uppercase">
+                        <div className="border-t bg-muted/20 px-5 py-2.5 flex items-center justify-between font-mono text-[10px] tracking-wider text-foreground/60 uppercase">
                             <div>
                                 PROTOCOL: HTTPS/TLS 1.3
                             </div>
@@ -167,7 +167,7 @@ export default function Contact() {
                                 LINE: 12, CHAR: 45
                             </div>
                             <div className="flex items-center gap-1.5">
-                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                                <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
                                 READY
                             </div>
                         </div>

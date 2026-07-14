@@ -46,8 +46,10 @@ export default function Hero() {
                         <motion.span
                             variants={itemVariants}
                             className="inline-flex self-start items-center rounded-full border px-3 py-1 text-sm gap-2 bg-transparent font-medium tracking-wide"
+                            role="status"
+                            aria-live="polite"
                         >
-                            <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+                            <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" aria-hidden="true"></span>
                             {profile.status}
                         </motion.span>
 
@@ -71,7 +73,6 @@ export default function Hero() {
                             {profile.bio}
                         </motion.p>
 
-                        {/* button */}
                         <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
                             <Link href="/projects">
                                 <Button variant="glow" size="lg" className="w-full sm:w-auto">
@@ -98,10 +99,10 @@ export default function Hero() {
                                 {/* Header */}
                                 <div className="flex items-center justify-between border-b bg-muted px-5 py-4">
                                     {/* windows control */}
-                                    <div className="flex gap-2">
-                                        <span className="h-2 w-2 rounded-full bg-red-500"></span>
-                                        <span className="h-2 w-2 rounded-full bg-yellow-500"></span>
-                                        <span className="h-2 w-2 rounded-full bg-green-500"></span>
+                                    <div className="flex gap-2" aria-hidden="true">
+                                        <span className="h-2.5 w-2.5 rounded-full bg-red-500"></span>
+                                        <span className="h-2.5 w-2.5 rounded-full bg-yellow-500"></span>
+                                        <span className="h-2.5 w-2.5 rounded-full bg-green-500"></span>
                                     </div>
 
                                     <p className="font-mono text-sm text-muted-foreground">~/terminal-resume</p>
@@ -110,7 +111,7 @@ export default function Hero() {
                                 {/* Body */}
                                 <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 p-6 sm:p-8">
                                     {/* avatar */}
-                                    <div className="flex h-20 w-20 sm:h-24 sm:w-24 shrink-0 items-center justify-center rounded-2xl border bg-muted text-4xl sm:text-5xl">
+                                    <div className="flex h-20 w-20 sm:h-24 sm:w-24 shrink-0 items-center justify-center rounded-2xl border bg-muted text-4xl sm:text-5xl" aria-hidden="true">
                                         RA
                                     </div>
 

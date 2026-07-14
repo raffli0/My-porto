@@ -168,7 +168,7 @@ export default function Navbar() {
                                             href={item.href}
                                             onClick={(e) => handleNavClick(e, item.href)}
                                             className={cn(
-                                                "relative flex items-center px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-150",
+                                                "relative flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors duration-150 min-h-[44px]",
                                                 active
                                                     ? "text-foreground"
                                                     : "text-muted-foreground hover:text-foreground"
@@ -197,8 +197,8 @@ export default function Navbar() {
                             variant="ghost"
                             size="icon"
                             onClick={toggleTheme}
-                            aria-label="Toggle theme"
-                            className="relative h-9 w-9 rounded-lg border transition-all hover:bg-accent"
+                            aria-label={mounted && resolvedTheme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+                            className="relative h-11 w-11 rounded-lg border transition-all hover:bg-accent"
                         >
                             {mounted && (
                                 <span className="relative flex h-4 w-4 items-center justify-center">
@@ -213,9 +213,10 @@ export default function Navbar() {
                             href="/resume.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="Download resume"
                             className="hidden md:block"
                         >
-                            <Button variant="outline" size="sm" className="h-9 gap-1.5">
+                            <Button variant="outline" size="sm" className="h-11 gap-1.5 min-h-[44px]">
                                 <FileText className="h-3.5 w-3.5" />
                                 Resume
                             </Button>
@@ -227,7 +228,7 @@ export default function Navbar() {
                             size="icon"
                             aria-label="Toggle menu"
                             onClick={() => setMenuOpen(v => !v)}
-                            className="relative h-9 w-9 rounded-lg border md:hidden"
+                            className="relative h-11 w-11 rounded-lg border md:hidden"
                         >
                             <AnimatePresence mode="wait" initial={false}>
                                 {menuOpen ? (
@@ -289,7 +290,7 @@ export default function Navbar() {
                                                         setMenuOpen(false);
                                                     }}
                                                     className={cn(
-                                                        "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
+                                                        "flex items-center gap-3 rounded-md px-3 py-3 text-sm font-medium transition-colors min-h-[44px]",
                                                         active
                                                             ? "bg-accent text-foreground"
                                                             : "text-muted-foreground hover:bg-accent/50 hover:text-foreground"
@@ -307,7 +308,7 @@ export default function Navbar() {
 
                                     <li className="mt-2 border-t pt-2">
                                         <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                                            <Button variant="outline" size="sm" className="w-full gap-2">
+                                            <Button variant="outline" size="sm" className="w-full gap-2 min-h-[44px]">
                                                 <FileText className="h-3.5 w-3.5" />
                                                 Download Resume
                                             </Button>

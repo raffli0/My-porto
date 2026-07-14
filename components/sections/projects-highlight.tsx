@@ -125,18 +125,20 @@ export default function ProjectsHighlight() {
                             <Button
                                 variant="outline"
                                 size="icon"
-                                className="h-8 w-8 rounded-lg"
+                                className="h-11 w-11 rounded-lg"
                                 onClick={slideLeft}
                                 disabled={currentIndex === 0}
+                                aria-label="Previous slide"
                             >
                                 <ChevronLeft className="h-4 w-4" />
                             </Button>
                             <Button
                                 variant="outline"
                                 size="icon"
-                                className="h-8 w-8 rounded-lg"
+                                className="h-11 w-11 rounded-lg"
                                 onClick={slideRight}
                                 disabled={currentIndex >= maxIndex}
+                                aria-label="Next slide"
                             >
                                 <ChevronRight className="h-4 w-4" />
                             </Button>
@@ -144,7 +146,8 @@ export default function ProjectsHighlight() {
 
                         <Link
                             href="/projects"
-                            className="group hidden sm:flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                            className="group hidden sm:flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground min-h-[44px] items-center"
+                            aria-label="View all projects"
                         >
                             View all
                             <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -170,7 +173,7 @@ export default function ProjectsHighlight() {
                                     setCurrentIndex(0); // Reset index on filter change
                                 }}
                                 className={cn(
-                                    "relative px-4 py-1.5 text-xs font-mono rounded-full border transition-all duration-200",
+                                    "relative px-4 py-2 text-xs font-mono rounded-full border transition-all duration-200 min-h-[44px] flex items-center",
                                     active
                                         ? "border-primary text-primary"
                                         : "border-border text-muted-foreground hover:text-foreground hover:border-muted-foreground"
@@ -265,7 +268,7 @@ export default function ProjectsHighlight() {
                                             {/* Title + actions */}
                                             <div className="mb-2 flex items-start justify-between gap-2">
                                                 <Link href={`/projects/${project.slug}`}>
-                                                    <h3 className="font-semibold leading-snug tracking-tight line-clamp-1 group-hover:text-primary transition-colors cursor-pointer">
+                                                    <h3 className="font-semibold leading-snug tracking-tight line-clamp-1 group-hover:text-primary transition-colors">
                                                         {project.title}
                                                     </h3>
                                                 </Link>
@@ -342,7 +345,7 @@ export default function ProjectsHighlight() {
                                 key={i}
                                 onClick={() => setCurrentIndex(i)}
                                 className={cn(
-                                    "h-1.5 rounded-full transition-all duration-300",
+                                    "h-3 rounded-full transition-all duration-300 min-w-[20px] min-h-[20px] cursor-pointer",
                                     currentIndex === i ? "w-6 bg-primary" : "w-1.5 bg-border hover:bg-muted-foreground"
                                 )}
                                 aria-label={`Go to slide ${i + 1}`}
@@ -355,7 +358,8 @@ export default function ProjectsHighlight() {
                 <div className="mt-8 flex justify-center sm:hidden">
                     <Link
                         href="/projects"
-                        className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground min-h-[44px]"
+                        aria-label="View all projects"
                     >
                         View all projects
                         <ArrowUpRight className="h-3.5 w-3.5" />

@@ -67,7 +67,7 @@ export default function Footer() {
                                     <li key={label}>
                                         <Link
                                             href={href}
-                                            className="text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground"
+                                            className="text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground min-h-[44px] flex items-center"
                                         >
                                             {label}
                                         </Link>
@@ -88,7 +88,7 @@ export default function Footer() {
                                             href={href}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground"
+                                            className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground min-h-[44px]"
                                         >
                                             {icon}
                                             {label}
