@@ -131,7 +131,7 @@ export default function About() {
                                 key={idx}
                                 initial={{ opacity: 0, x: -10 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false, margin: "-50px" }}
                                 transition={{ duration: 0.4, delay: idx * 0.1 }}
                                 className="relative"
                             >
@@ -186,7 +186,7 @@ export default function About() {
                                 key={catIdx}
                                 initial={{ opacity: 0, y: 15 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false, margin: "-50px" }}
                                 transition={{ duration: 0.4, delay: catIdx * 0.05 }}
                                 className="rounded-2xl border bg-card/60 p-6 shadow-sm hover:shadow-md transition-all duration-300"
                             >

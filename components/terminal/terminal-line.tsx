@@ -1,17 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface TerminalLineProps {
     text: string;
     speed?: number;
+    onComplete?: () => void;
 }
 
 export default function TerminalLine({
     text,
     speed = 40,
+    onComplete,
 }: TerminalLineProps) {
     const [display, setDisplay] = useState("");
+    const onCompleteRef = useRef(onComplete);
+
+    // Keep the ref updated with the latest callback
+    useEffect(() => {
+        onCompleteRef.current = onComplete;
+    }, [onComplete]);
 
     useEffect(() => {
         let index = 0;
@@ -23,6 +31,9 @@ export default function TerminalLine({
 
             if (index > text.length) {
                 clearInterval(interval);
+                if (onCompleteRef.current) {
+                    onCompleteRef.current();
+                }
             }
         }, speed);
 

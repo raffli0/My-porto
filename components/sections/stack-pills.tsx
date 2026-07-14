@@ -49,7 +49,7 @@ export default function StackPills({ stack }: StackPillsProps) {
                         /* entrance stagger */
                         initial={{ opacity: 0, x: -8 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                     >
                         {/* permissions col */}
                         <span className="text-muted-foreground/40 text-[10px] w-24 shrink-0 hidden sm:block">

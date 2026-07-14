@@ -107,7 +107,7 @@ export default function ProjectsHighlight() {
                     className="mb-8 flex items-end justify-between"
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ duration: 0.5 }}
                 >
                     <div className="space-y-2">
@@ -157,7 +157,7 @@ export default function ProjectsHighlight() {
                     className="mb-8 flex flex-wrap gap-2 border-b pb-4"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ duration: 0.5, delay: 0.1 }}
                 >
                     {categories.map((category) => {
@@ -210,7 +210,7 @@ export default function ProjectsHighlight() {
                                         className="group relative flex flex-col overflow-hidden rounded-xl border bg-card transition-colors duration-200 hover:bg-accent/20 w-full sm:w-[calc(50%-10px)] lg:w-[calc(33.3333%-13.33px)] shrink-0"
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false, margin: "-30px" }}
                                         transition={{ duration: 0.4, delay: i * 0.05 }}
                                         whileHover={{ y: -4 }}
                                     >
