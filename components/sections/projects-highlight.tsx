@@ -100,7 +100,7 @@ export default function ProjectsHighlight() {
     };
 
     return (
-        <section id="projects" className="py-24 overflow-hidden">
+        <section id="projects" className="py-8 md:py-16 overflow-hidden">
             <Container>
                 {/* Header */}
                 <motion.div

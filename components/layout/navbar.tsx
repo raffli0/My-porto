@@ -20,7 +20,7 @@ export default function Navbar() {
 
     const [mounted, setMounted] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [activeHash, setActiveHash] = useState("");
+    const [activeSection, setActiveSection] = useState("home");
     const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => { setMounted(true); }, []);
@@ -31,29 +31,105 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
+    // Scroll listener fallback for the top of the page
     useEffect(() => {
-        const hashIds = navItems
-            .filter(i => i.href.startsWith("#"))
-            .map(i => i.href.slice(1));
+        if (pathName !== "/") return;
+        const handleScroll = () => {
+            if (window.scrollY < 50) {
+                setActiveSection("home");
+            }
+        };
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [pathName]);
 
-        const observers: IntersectionObserver[] = [];
-        hashIds.forEach(id => {
+    // Intersection Observer to detect active sections on the home page
+    useEffect(() => {
+        if (pathName !== "/") return;
+
+        const sections = ["home", "about", "contact"];
+        const observerOptions = {
+            root: null,
+            rootMargin: "-30% 0px -50% 0px",
+            threshold: 0,
+        };
+
+        const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+        sections.forEach(id => {
             const el = document.getElementById(id);
-            if (!el) return;
-            const obs = new IntersectionObserver(
-                ([entry]) => { if (entry.isIntersecting) setActiveHash(`#${id}`); },
-                { rootMargin: "-40% 0px -55% 0px" }
-            );
-            obs.observe(el);
-            observers.push(obs);
+            if (el) observer.observe(el);
         });
-        return () => observers.forEach(o => o.disconnect());
-    }, []);
+
+        return () => observer.disconnect();
+    }, [pathName]);
+
+    // Smooth scroll to section if URL has a hash on initial load/navigation
+    useEffect(() => {
+        if (pathName === "/" && typeof window !== "undefined") {
+            const hash = window.location.hash;
+            if (hash) {
+                const targetId = hash.replace("#", "");
+                const timer = setTimeout(() => {
+                    const element = document.getElementById(targetId);
+                    if (element) {
+                        element.scrollIntoView({ behavior: "smooth" });
+                        setActiveSection(targetId);
+                    }
+                }, 100);
+                return () => clearTimeout(timer);
+            }
+        }
+    }, [pathName]);
+    // Reset scroll to top on page transitions when there is no hash
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const hash = window.location.hash;
+            if (!hash) {
+                window.scrollTo({ top: 0, behavior: "instant" as any });
+            }
+        }
+    }, [pathName]);
 
     useEffect(() => { setMenuOpen(false); }, [pathName]);
 
-    const isActive = (href: string) =>
-        href.startsWith("#") ? activeHash === href : pathName === href;
+    const getActiveState = (href: string) => {
+        if (pathName === "/") {
+            if (href === "/") return activeSection === "home";
+            if (href === "/#about") return activeSection === "about";
+            if (href === "/#contact") return activeSection === "contact";
+            return false;
+        }
+        return pathName === href;
+    };
+
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        const isSectionLink = href.startsWith("/#") || href === "/";
+        if (isSectionLink && pathName === "/") {
+            e.preventDefault();
+            if (href === "/") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                window.history.pushState(null, "", "/");
+                setActiveSection("home");
+            } else {
+                const targetId = href.replace("/#", "");
+                const element = document.getElementById(targetId);
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                    window.history.pushState(null, "", href);
+                    setActiveSection(targetId);
+                }
+            }
+        }
+    };
 
     const toggleTheme = () =>
         setTheme(resolvedTheme === "dark" ? "light" : "dark");
@@ -85,11 +161,12 @@ export default function Navbar() {
                     <nav className="hidden md:flex flex-1 justify-center">
                         <ul className="flex items-center gap-1">
                             {navItems.map((item) => {
-                                const active = isActive(item.href);
+                                const active = getActiveState(item.href);
                                 return (
                                     <li key={item.href}>
                                         <Link
                                             href={item.href}
+                                            onClick={(e) => handleNavClick(e, item.href)}
                                             className={cn(
                                                 "relative flex items-center px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-150",
                                                 active
@@ -197,7 +274,7 @@ export default function Navbar() {
                             <nav className="py-3">
                                 <ul className="flex flex-col gap-0.5">
                                     {navItems.map((item, i) => {
-                                        const active = isActive(item.href);
+                                        const active = getActiveState(item.href);
                                         return (
                                             <motion.li
                                                 key={item.href}
@@ -207,7 +284,10 @@ export default function Navbar() {
                                             >
                                                 <Link
                                                     href={item.href}
-                                                    onClick={() => setMenuOpen(false)}
+                                                    onClick={(e) => {
+                                                        handleNavClick(e, item.href);
+                                                        setMenuOpen(false);
+                                                    }}
                                                     className={cn(
                                                         "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
                                                         active

@@ -10,41 +10,41 @@ import Link from "next/link";
 
 export default function Hero() {
     return (
-        <section>
+        <section id="home" className="py-8 md:py-16">
             <Container>
-                <div className="grid pt-8 grid-cols-2 items-center gap-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10 md:gap-20">
                     {/* left */}
-                    <div className="flex flex-col justify-center space-y-8 max-w-xl">
-                        <span className="inline-flex items-center rounded-full border px-3 py-1 text-sm gap-2 bg-transparent font-medium tracking-wide">
+                    <div className="flex flex-col justify-center space-y-6 md:space-y-8 max-w-xl">
+                        <span className="inline-flex self-start items-center rounded-full border px-3 py-1 text-sm gap-2 bg-transparent font-medium tracking-wide">
                             <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
                             {profile.status}
                         </span>
 
                         <div className="space-y-4">
-                            <h1 className="text-5xl font-bold leading-tight">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
                                 Hi, I'm
                                 <br />
-                                <span className="text-8xl tracking-tighter text-primary">{profile.name}</span>
+                                <span className="text-5xl sm:text-7xl md:text-8xl tracking-tighter text-primary">{profile.name}</span>
                             </h1>
 
-                            <div className="text-xl font-medium text-muted-foreground">
+                            <div className="text-lg md:text-xl font-medium text-muted-foreground">
                                 <p>{profile.title} &</p>
                                 <p>{profile.subtitle}</p>
                             </div>
                         </div>
 
-                        <p className="text-muted-foreground max-w-lg leading-8 text-base">{profile.bio}</p>
+                        <p className="text-muted-foreground max-w-lg leading-relaxed md:leading-8 text-sm md:text-base">{profile.bio}</p>
 
                         {/* button */}
-                        <div className="flex gap-4">
+                        <div className="flex flex-wrap gap-4">
                             <Link href="/projects">
-                                <Button variant="glow" size="lg">
+                                <Button variant="glow" size="lg" className="w-full sm:w-auto">
                                     View Projects
                                 </Button>
                             </Link>
 
                             <Link href="#contact">
-                                <Button variant="terminal" size="lg">
+                                <Button variant="terminal" size="lg" className="w-full sm:w-auto">
                                     Contact Me
                                 </Button>
                             </Link>
@@ -67,9 +67,9 @@ export default function Hero() {
                             </div>
 
                             {/* Body */}
-                            <div className="flex gap-8 p-8">
+                            <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 p-6 sm:p-8">
                                 {/* avatar */}
-                                <div className="flex h-24 w-24 items-center justify-center rounded-2xl border bg-muted text-5xl">
+                                <div className="flex h-20 w-20 sm:h-24 sm:w-24 shrink-0 items-center justify-center rounded-2xl border bg-muted text-4xl sm:text-5xl">
                                     RA
                                 </div>
 

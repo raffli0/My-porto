@@ -21,7 +21,7 @@ export default function About() {
     return (
         <section
             id="about"
-            className="py-24 border-t bg-background/30 backdrop-blur-sm"
+            className="py-8 md:py-16 border-t bg-background/30 backdrop-blur-sm scroll-mt-16"
         >
             <Container>
                 {/* Section Profile */}

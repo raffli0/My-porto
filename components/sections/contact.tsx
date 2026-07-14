@@ -4,7 +4,7 @@ export default function Contact() {
     return (
         <section
             id="contact"
-            className="py-14"
+            className="py-8 md:py-16 border-t scroll-mt-16"
         >
             <Container>
                 {/* Header Section */}
