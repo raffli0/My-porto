@@ -11,10 +11,10 @@ export const navItems = [
         name: "Projects",
         href: "/projects",
     },
-    {
-        name: "Case Studies",
-        href: "/casestudies",
-    },
+    // {
+    //     name: "Case Studies",
+    //     href: "/casestudies",
+    // },
     {
         name: "Blog",
         href: "/blog",
