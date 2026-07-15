@@ -52,6 +52,7 @@ function PostImage({ post, className }: { post: BlogPost; className?: string }) 
                     src={post.image}
                     alt={post.title}
                     fill
+                    sizes="100vw"
                     className="object-cover opacity-80"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

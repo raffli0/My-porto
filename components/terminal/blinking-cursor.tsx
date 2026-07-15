@@ -21,37 +21,19 @@ export default function BlinkingCursor({
     let animationClass = "";
 
     if (mode === "pulse") {
-        style.animationName = "terminal-smooth";
-        style.animationIterationCount = "infinite";
-        style.animationTimingFunction = "ease-in-out";
+        animationClass = "animate-[terminal-smooth_1s_ease-in-out_infinite]";
     } else if (mode === "ping") {
         animationClass = "animate-ping";
     } else if (mode === "blink") {
-        style.animationName = "terminal-blink";
-        style.animationIterationCount = "infinite";
-        style.animationTimingFunction = "steps(2, start)";
+        animationClass = "animate-[terminal-blink_1s_steps(2,start)_infinite]";
     }
 
     return (
-        <>
-            {(mode === "blink" || mode === "pulse") && (
-                <style dangerouslySetInnerHTML={{ __html: `
-                    @keyframes terminal-blink {
-                        0%, 100% { opacity: 1; }
-                        50% { opacity: 0; }
-                    }
-                    @keyframes terminal-smooth {
-                        0%, 100% { opacity: 1; }
-                        50% { opacity: 0; }
-                    }
-                `}} />
-            )}
-            <span
-                className={`inline-block ${animationClass} ${className}`}
-                style={style}
-            >
-                {char}
-            </span>
-        </>
+        <span
+            className={`inline-block ${animationClass} ${className}`}
+            style={style}
+        >
+            {char}
+        </span>
     );
 }

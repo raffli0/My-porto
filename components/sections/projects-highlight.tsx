@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Circle, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -227,16 +228,20 @@ export default function ProjectsHighlight() {
                                                     </span>
                                                 </div>
 
-                                                {project.image ? (
-                                                    <img
+                                                {project.image && (
+                                                    <Image
                                                         src={project.image}
                                                         alt={project.title}
+                                                        width={400}
+                                                        height={200}
+                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                         className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                                        priority={i < 2}
                                                         onError={(e) => {
-                                                            (e.currentTarget as HTMLImageElement).style.display = "none";
+                                                            (e.target as HTMLImageElement).style.display = "none";
                                                         }}
                                                     />
-                                                ) : null}
+                                                )}
 
                                                 {/* Status badge — Top Right */}
                                                 <span className={`absolute top-3 right-3 flex items-center gap-1.5 rounded-full border border-current/20 bg-background/80 px-2.5 py-1 font-mono text-[11px] backdrop-blur-sm ${status.text}`}>

@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Circle, Search, SlidersHorizontal, Folder, X, Eye } from "lucide-react";
 import { useState } from "react";
 
@@ -170,12 +171,15 @@ export default function ProjectsClient() {
                                                 </div>
 
                                                 {project.image ? (
-                                                    <img
+                                                    <Image
                                                         src={project.image}
                                                         alt={project.title}
+                                                        width={600}
+                                                        height={300}
+                                                        sizes="(max-width: 768px) 100vw, 50vw"
                                                         className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                                                         onError={(e) => {
-                                                            (e.currentTarget as HTMLImageElement).style.display = "none";
+                                                            (e.target as HTMLImageElement).style.display = "none";
                                                         }}
                                                     />
                                                 ) : null}

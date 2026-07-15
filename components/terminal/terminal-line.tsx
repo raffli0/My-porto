@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 interface TerminalLineProps {
     text: string;
@@ -15,30 +15,44 @@ export default function TerminalLine({
 }: TerminalLineProps) {
     const [display, setDisplay] = useState("");
     const onCompleteRef = useRef(onComplete);
+    const animationRef = useRef<number | null>(null);
+    const startTimeRef = useRef<number | null>(null);
+    const lastFrameRef = useRef<number | null>(null);
 
     // Keep the ref updated with the latest callback
     useEffect(() => {
         onCompleteRef.current = onComplete;
     }, [onComplete]);
 
-    useEffect(() => {
-        let index = 0;
-
-        const interval = setInterval(() => {
+    const animate = useCallback((timestamp: number) => {
+        if (startTimeRef.current === null) {
+            startTimeRef.current = timestamp;
+        }
+        
+        const elapsed = timestamp - startTimeRef.current;
+        const index = Math.floor(elapsed / speed);
+        
+        if (index <= text.length) {
             setDisplay(text.slice(0, index));
-
-            index++;
-
-            if (index > text.length) {
-                clearInterval(interval);
-                if (onCompleteRef.current) {
-                    onCompleteRef.current();
-                }
+            if (animationRef.current !== null) {
+                animationRef.current = requestAnimationFrame(animate);
             }
-        }, speed);
-
-        return () => clearInterval(interval);
+        } else {
+            setDisplay(text);
+            if (onCompleteRef.current) {
+                onCompleteRef.current();
+            }
+        }
     }, [text, speed]);
+
+    useEffect(() => {
+        animationRef.current = requestAnimationFrame(animate);
+        return () => {
+            if (animationRef.current !== null) {
+                cancelAnimationFrame(animationRef.current);
+            }
+        };
+    }, [animate]);
 
     return <>{display}</>;
 }

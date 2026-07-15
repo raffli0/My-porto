@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ExternalLink, Users, Terminal, Image as ImageIcon, LinkIcon, Layers, Circle, ArrowUpRight } from "lucide-react";
 import Container from "../ui/container";
 import { Button } from "../ui/button";
@@ -36,12 +37,16 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                 {/* Background Cover Image or Gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-t ${gradient} to-background/20 z-0`} />
                 {project.image && (
-                    <img
+                    <Image
                         src={project.image}
                         alt={project.title}
+                        width={1200}
+                        height={600}
+                        sizes="100vw"
                         className="absolute inset-0 h-full w-full object-cover object-top opacity-40 mix-blend-luminosity z-0"
+                        priority
                         onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).style.display = "none";
+                            (e.target as HTMLImageElement).style.display = "none";
                         }}
                     />
                 )}
@@ -151,13 +156,19 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                                 </h2>
                                 {project.gallery && project.gallery.length > 0 ? (
                                     <div className="grid gap-4 sm:grid-cols-2">
-                                        {project.gallery.map((imgSrc, idx) => (
-                                            <div key={idx} className="relative aspect-video rounded-xl border bg-muted overflow-hidden group shadow-sm">
-                                                <img
-                                                    src={imgSrc}
-                                                    alt={`${project.title} screenshot ${idx + 1}`}
-                                                    className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                                                />
+                                         {project.gallery.map((imgSrc, idx) => (
+                                             <div key={idx} className="relative aspect-video rounded-xl border bg-muted overflow-hidden group shadow-sm">
+                                                 <Image
+                                                     src={imgSrc}
+                                                     alt={`${project.title} screenshot ${idx + 1}`}
+                                                     width={600}
+                                                     height={400}
+                                                     sizes="(max-width: 768px) 100vw, 50vw"
+                                                     className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                                     onError={(e) => {
+                                                         (e.target as HTMLImageElement).style.display = "none";
+                                                     }}
+                                                 />
                                                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                                     <span className="text-xs font-mono text-white bg-black/60 px-3 py-1.5 rounded-full border border-white/20">
                                                         Screenshot #{idx + 1}
@@ -317,11 +328,19 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                                                 <div className={`absolute inset-0 bg-gradient-to-br ${rg} flex items-center justify-center`}>
                                                     <span className="font-mono text-3xl font-bold opacity-10 select-none">{rp.title.slice(0, 2).toUpperCase()}</span>
                                                 </div>
-                                                {rp.image && (
-                                                    <img src={rp.image} alt={rp.title}
-                                                        className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                                                        onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
-                                                )}
+                                                 {rp.image && (
+                                                     <Image
+                                                         src={rp.image}
+                                                         alt={rp.title}
+                                                         width={400}
+                                                         height={200}
+                                                         sizes="(max-width: 768px) 100vw, 33vw"
+                                                         className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                                         onError={(e) => {
+                                                             (e.target as HTMLImageElement).style.display = "none";
+                                                         }}
+                                                     />
+                                                 )}
                                                 <span className={cn("absolute top-3 right-3 flex items-center gap-1.5 rounded-full border border-white/20 bg-black/50 backdrop-blur-sm px-2 py-0.5 font-mono text-[9px] text-white", rs.text)}>
                                                     <Circle className="h-1 w-1 fill-current" />{rs.label}
                                                 </span>

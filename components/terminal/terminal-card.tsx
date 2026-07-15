@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useCallback, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 interface TerminalCardProps {
@@ -25,28 +25,45 @@ export default function TerminalCard({
         x: 50,
         y: 50,
     });
+    const [isMobile, setIsMobile] = useState(false);
+    const lastCallRef = useRef<number>(0);
 
-    function handleMouseMove(
-        e: React.MouseEvent<HTMLDivElement>
-    ) {
-        if (maxRotation === 0) return;
-        const rect = e.currentTarget.getBoundingClientRect();
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
 
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+    const handleMouseMove = useCallback(
+        (e: React.MouseEvent<HTMLDivElement>) => {
+            if (maxRotation === 0 || isMobile) return;
+            
+            const now = Date.now();
+            if (now - lastCallRef.current < 16) return; // Throttle to ~60fps
+            lastCallRef.current = now;
+            
+            const rect = e.currentTarget.getBoundingClientRect();
 
-        const rotateY = ((x / rect.width) - 0.5) * maxRotation;
-        const rotateX = -((y / rect.height) - 0.5) * maxRotation;
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
-        setRotate({
-            x: rotateX,
-            y: rotateY,
-        });
-        setMouse({
-            x: (x / rect.width) * 100,
-            y: (y / rect.height) * 100,
-        });
-    }
+            const rotateY = ((x / rect.width) - 0.5) * maxRotation;
+            const rotateX = -((y / rect.height) - 0.5) * maxRotation;
+
+            setRotate({
+                x: rotateX,
+                y: rotateY,
+            });
+            setMouse({
+                x: (x / rect.width) * 100,
+                y: (y / rect.height) * 100,
+            });
+        },
+        [maxRotation, isMobile]
+    );
 
     function reset() {
         setRotate({
@@ -63,7 +80,7 @@ export default function TerminalCard({
         >
             <motion.div
                 className={cn(
-                    "relative overflow-hidden rounded-2xl border bg-card text-card-foreground shadow-2xl",
+                    "relative overflow-hidden rounded-2xl border bg-card text-card-foreground shadow-2xl will-change-transform",
                     className
                 )}
                 animate={{
