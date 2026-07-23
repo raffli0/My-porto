@@ -49,8 +49,8 @@ export default function Hero() {
                             role="status"
                             aria-live="polite"
                         >
-                            <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" aria-hidden="true"></span>
-                            {profile.status}
+                            {/* <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" aria-hidden="true"></span> */}
+                            {/* {profile.status} */}
                         </motion.span>
 
                         <motion.div variants={itemVariants} className="space-y-4">

@@ -1,5 +1,17 @@
 {
   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "editor.inlineSuggest.enabled": true,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": true,
+    "markdown": true,
+    "scminput": true
+  },
   "editor.formatOnType": false, // required
   "editor.formatOnPaste": true, // optional
   "editor.formatOnSave": true, // optional

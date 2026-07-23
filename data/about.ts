@@ -45,7 +45,6 @@ export const experiences: Experience[] = [
         description: "Mengembangkan proyek freelance, personal, dan akademik untuk memperdalam pengalaman dalam pengembangan web, mobile, deployment server, dan keamanan aplikasi.",
         type: "Work"
     },
-
 ];
 
 export const skillCategories: SkillCategory[] = [
@@ -65,6 +64,7 @@ export const skillCategories: SkillCategory[] = [
         category: "Security & Networking",
         skills: ["Web Penetration Testing", "Burp Suite", "Kali Linux"]
     }
+    
 ];
 
 export const techStack: TechItem[] = [
@@ -76,5 +76,7 @@ export const techStack: TechItem[] = [
     { name: "MySQL" },
     { name: "Linux" },
     { name: "Docker" },
-    { name: "Git" }
+    { name: "Git" },
 ];
+
+
