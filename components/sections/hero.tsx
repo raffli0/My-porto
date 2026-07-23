@@ -43,15 +43,15 @@ export default function Hero() {
                         initial="hidden"
                         animate="visible"
                     >
-                        <motion.span
+                        {/* <motion.span
                             variants={itemVariants}
                             className="inline-flex self-start items-center rounded-full border px-3 py-1 text-sm gap-2 bg-transparent font-medium tracking-wide"
                             role="status"
                             aria-live="polite"
-                        >
-                            {/* <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" aria-hidden="true"></span> */}
-                            {/* {profile.status} */}
-                        </motion.span>
+                        > */}
+                        {/* <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" aria-hidden="true"></span> */}
+                        {/* {profile.status} */}
+                        {/* </motion.span> */}
 
                         <motion.div variants={itemVariants} className="space-y-4">
                             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
